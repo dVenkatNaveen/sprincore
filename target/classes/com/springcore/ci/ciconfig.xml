@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">    
+    
+   <!--  Passing Parameter as object reference to constructor -->    
+    <bean class="com.springcore.ci.Certi" name="cer1">
+    	<constructor-arg value="Java is Popular language"/>
+    </bean>
+    
+    <!--  this is our beans using Constructor --> 
+    <bean class="com.springcore.ci.Person" name="person1">
+    	<constructor-arg>
+    			<value>Naveen</value>
+    	</constructor-arg>
+    	<constructor-arg value="19" type="int"/>
+    	<constructor-arg ref="cer1" />
+    	<constructor-arg>
+    			<list>
+	    			<value>123</value>
+	    			<value>456</value>
+	    			<value>789</value>
+	    	</list>
+    	</constructor-arg>
+    </bean>
+    
+     <!--  Passing Parameter as object reference to constructor -->    
+    <bean class="com.springcore.ci.Certi" name="cer2" c:name="Python is Popular language" />
+    
+    <!--  this is our beans using Constructor --> 
+    <bean class="com.springcore.ci.Person" name="person2">
+    	<constructor-arg>
+    			<value>Manish</value>
+    	</constructor-arg>
+    	<constructor-arg value="06" type="int"/>
+    	<constructor-arg ref="cer2" />
+    	<constructor-arg>
+    			<list>
+	    			<value>123</value>
+	    			<value>456</value>
+	    			<value>789</value>
+	    	</list>
+    	</constructor-arg>
+    </bean>
+    
+    <!--  Resolving ambiguity issue with constructors --> 
+    <bean class="com.springcore.ci.Addition" name="add1">
+    	<constructor-arg value="12"/> <!--  by default string constructor will be called otherwise on based on order the constructors gets called 
+    	 and if you want to call respective constructor than use type keyword--> 
+    	<constructor-arg value="20"/>
+    </bean>
+    <bean class="com.springcore.ci.Addition" name="add2">
+    	<constructor-arg value="12" type="int" index="1"/> <!--  by default string constructor will be called otherwise on based on order the constructors gets called 
+    	 and if you want to call respective constructor than use type keyword--> 
+    	<constructor-arg value="20" type="int" index="0"/>
+    </bean>
+   </beans>
